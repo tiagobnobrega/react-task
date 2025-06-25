@@ -2,7 +2,7 @@
 
 Feel free to use whatever tool you want. AI included.
 
-Get a working copy at: https://github.com/tiagobnobrega/react-task
+Get a working copy at: https://github.com/tiagobnobrega/react-task.
 
 # Requirements:
 
@@ -10,7 +10,7 @@ Implemented a paginated view that will display the cards on a grid.
 
 ## Cards
 
-Build components to present both cards described on the design reference.
+Build components to present both cards described in the design reference.
 
 The cards should have a size of 200px x 300px.
 
@@ -27,27 +27,27 @@ Each type of item should be rendered by the correct type of card:
 
 Implement multiple themes.
 
-theme `obisidian` has the balck #000 background on elements.
+The theme `obsidian` has a black #000 background on elements.
 
-theme `snow` has the grey #EAECEF bacground.
+Theme `snow` has a grey #EAECEF background.
 
 ## Pagination
 
-Implement any type of pagination, including but not required infinite scrolling
+Implement any type of pagination, including but not required infinite scrolling.
 
 If page-based pagination is implemented, each page should have at most 20 items.
 
-Loading states needs to be considered.
+Loading states need to be considered.
 
-There are no requirements to any loading state as it will depend on the solution
+There are no requirements for any loading state as it will depend on the solution
 It could be as simple as a "Loading..." text displaying on a div or a button.
 
 ## Data
 
-The data to be rendered is exposed through a mock api call using the `getItems` function.
+The data to be rendered is exposed through a mock API call using the `getItems` function.
 
-This function simulates a requrest delay and accepts a `pageSize` and `page` arguments.
+This function simulates the request delay and accepts `pageSize` and `page` arguments.
 
-The api returns the fetched items in the `items`.
+The API returns the fetched items in the `items`.
 
 Information about pagination is returned in the `pagination` prop.
