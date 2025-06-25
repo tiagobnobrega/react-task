@@ -1,69 +1,39 @@
-# React + TypeScript + Vite
+# Intructions:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Feel free to use whatever tool you want. AI included.
 
-Currently, two official plugins are available:
+Get a working copy at: https://github.com/tiagobnobrega/react-task
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Requirements:
 
-## Expanding the ESLint configuration
+Implemented a paginated view that will display the cards on a grid.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Cards
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Build components to present both cards described on the design reference.
+The cards should have a size of 200px x 300px.
+The images on the card Type:1 should have 120px x 120px.
+Images should be centered covering the whole 120px square, cropped without distortions.
+Each type of item should be rendered by the correct type of card:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Items with type=1 should be rendered using card Type: 1
+- Items with type=2 should be rendered using card Type: 2
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Themes
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Implement multiple themes.
+theme `obisidian` has the balck #000 background on elements
+theme `snow` has the grey #EAECEF bacground.
+#Pagination
+Implement any type of pagination, including but not required infinite scrolling
+If page-based pagination is implemented, each page should have at most 20 items.
+Loading states needs to be considered.
+There are no requirements to any loading state as it will depend on the solution
+It could be as simple as a "Loading..." text displaying on a div or a button.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Data
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The data to be rendered is exposed through a mock api call using the `getItems` function.
+This function simulates a requrest delay and accepts a `pageSize` and `page` arguments.
+The api returns the fetched items in the `items`.
+Information about pagination is returned in the `pagination` prop.

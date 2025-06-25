@@ -3,7 +3,13 @@ import "./App.css";
 import { useEffect } from "react";
 import { getItems } from "./_internal/api";
 /**
- * Requirements:
+ * # Intructions:
+ *
+ * Feel free to use whatever tool you want. AI included.
+ *
+ * Get a working copy at: https://github.com/tiagobnobrega/react-task
+ *
+ * # Requirements:
  *
  * Implemented a paginated view that will display the cards on a grid.
  *
@@ -22,14 +28,14 @@ import { getItems } from "./_internal/api";
  *  theme `obisidian` has the balck #000 background on elements
  *  theme `snow` has the grey #EAECEF bacground.
  *
- * #Pagination
+ * # Pagination
  * Implement any type of pagination, including but not required infinite scrolling
  * If page-based pagination is implemented, each page should have at most 20 items.
  * Loading states needs to be considered.
  * There are no requirements to any loading state as it will depend on the solution
  * It could be as simple as a "Loading..." text displaying on a div or a button.
  *
- * #Data
+ * # Data
  * The data to be rendered is exposed through a mock api call using the `getItems` function.
  * This function simulates a requrest delay and accepts a `pageSize` and `page` arguments.
  * The api returns the fetched items in the `items`.
