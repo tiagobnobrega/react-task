@@ -1,7 +1,203 @@
-.App {
-  margin:auto;
-  font-family: sans-serif;
+/* App.css */
+body {
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: var(--background, #fff);
+  color: var(--text, #222);
 }
-.centered {
+
+.app-container {
+  min-height: 100vh;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.theme-switcher {
+  margin-bottom: 32px;
+  display: flex;
+  gap: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  gap: 28px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.card {
+  width: 200px;
+  height: 300px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  background: var(--card-bg, #fff);
+  box-shadow: 0 2px 10px rgba(30, 30, 30, 0.07);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.15s;
+}
+
+.card1-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 16px 0 16px;
+}
+
+.card1-btn {
+  background: var(--button-bg, #222);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  flex: 1;
+  margin: 0 3px;
+  padding: 8px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.card1-btn:hover,
+.card2-fav-btn:hover {
+  background: #222;
+  opacity: 0.88;
+}
+
+.card1-divider {
+  margin: 12px 0 0 0;
+  border: none;
+  border-top: 2px solid #222;
+}
+
+.card1-img-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  margin: 20px auto 0px auto;
+}
+
+.card1-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 2px solid #e0e0e0;
+  background: #eee;
+}
+
+.card1-title {
   text-align: center;
+  margin-top: 4px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.card1-badge {
+  background: var(--button-bg, #222);
+  color: #fff;
+  border-radius: 4px;
+  padding: 9px 0;
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 0 10px 0 auto;
+  width: 90px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+}
+
+.card2-badge {
+  background: var(--button-bg, #222);
+  color: #fff;
+  border-radius: 4px 0 4px 0;
+  padding: 8px 18px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+.card2-title {
+  margin: 55px 0 8px 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.card2-desc {
+  margin: 0 0 20px 0;
+  font-size: 1.12rem;
+  color: #222;
+}
+
+.card2-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex: 1;
+  margin: 0 12px 18px 0;
+}
+
+.card2-fav-btn {
+  background: var(--button-bg, #222);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 20px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  font-weight: 500;
+  margin-left: auto;
+  transition: background 0.15s;
+}
+
+.card2-divider {
+  border: none;
+  border-top: 2px solid #222;
+  margin: 16px 0 8px 0;
+}
+
+.theme-obsidian {
+  --background: #000;
+  --card-bg: #141417;
+  --button-bg: #000;
+  --text: #fff;
+}
+
+.theme-snow {
+  --background: #EAECEF;
+  --card-bg: #fff;
+  --button-bg: #222;
+  --text: #222;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  border-radius: 5px;
+  background: var(--button-bg, #222);
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.pagination-btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #888;
 }
