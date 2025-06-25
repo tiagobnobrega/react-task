@@ -31,7 +31,7 @@ theme `obisidian` has the balck #000 background on elements.
 
 theme `snow` has the grey #EAECEF bacground.
 
-# Pagination
+## Pagination
 
 Implement any type of pagination, including but not required infinite scrolling
 
