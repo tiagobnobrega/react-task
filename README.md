@@ -1,4 +1,4 @@
-# Intructions:
+# Instructions:
 
 Feel free to install any library and use whatever tool you want. AI included.
 
