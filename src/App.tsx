@@ -1,83 +1,128 @@
 import { Design } from "./_internal/Design";
 import "./App.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getItems } from "./_internal/api";
-/**
- * # Intructions:
- *
- * Feel free to use whatever tool you want. AI included.
- *
- * Get a working copy at: https://github.com/tiagobnobrega/react-task.
- *
- * # Requirements:
- *
- * Implemented a paginated view that will display the cards on a grid.
- *
- * ## Cards
- *
- * Build components to present both cards described in the design reference.
- *
- * The cards should have a size of 200px x 300px.
- *
- * The images on the card Type:1 should have 120px x 120px.
- *
- * Images should be centered covering the whole 120px square, cropped without distortions.
- *
- * Each type of item should be rendered by the correct type of card:
- *
- * - Items with type=1 should be rendered using card Type: 1
- * - Items with type=2 should be rendered using card Type: 2
- *
- * ## Themes
- *
- * Implement multiple themes.
- *
- * The theme `obsidian` has a black #000 background on elements.
- *
- * Theme `snow` has a grey #EAECEF background.
- *
- * ## Pagination
- *
- * Implement any type of pagination, including but not required infinite scrolling.
- *
- * If page-based pagination is implemented, each page should have at most 20 items.
- *
- * Loading states need to be considered.
- *
- * There are no requirements for any loading state as it will depend on the solution
- * It could be as simple as a "Loading..." text displaying on a div or a button.
- *
- * ## Data
- *
- * The data to be rendered is exposed through a mock API call using the `getItems` function.
- *
- * This function simulates the request delay and accepts `pageSize` and `page` arguments.
- *
- * The API returns the fetched items in the `items`.
- *
- * Information about pagination is returned in the `pagination` prop.
- *
- */
-export default function App() {
+import Card1 from "./components/Card1/Card1";
+import Card2 from "./components/Card2/Card2";
+import type { CardProps } from "./types";
+import { ThemeProvider, useTheme } from "./ThemeContext";
+
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <button className="pagination-btn" onClick={toggleTheme} style={{ marginBottom: 24 }}>
+      Switch to {theme === "obsidian" ? "Snow" : "Obsidian"} theme
+    </button>
+  );
+}
+
+function PaginationControls({
+  page,
+  totalPages,
+  setPage,
+  loading,
+}: {
+  page: number;
+  totalPages: number;
+  setPage: (p: number) => void;
+  loading: boolean;
+}) {
+  return (
+    <div className="pagination">
+      <button
+        className="pagination-btn"
+        disabled={loading || page <= 1}
+        onClick={() => setPage(page - 1)}
+      >
+        Prev
+      </button>
+      <span style={{ fontWeight: 600, minWidth: 60, display: "inline-block", textAlign: "center" }}>
+        {page} / {totalPages}
+      </span>
+      <button
+        className="pagination-btn"
+        disabled={loading || page >= totalPages}
+        onClick={() => setPage(page + 1)}
+      >
+        Next
+      </button>
+    </div>
+  );
+}
+
+/* currentPage
+: 
+1
+hasNextPage
+: 
+true
+pageSize
+: 
+20
+totalItems
+: 
+1000
+totalPages
+: 
+50
+*/
+
+function CardsPaginated() {
+  const [items, setItems] = useState<CardProps[]>([]);
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState({ currentPage: 1, pageSize: 20, totalItems: 0, totalPages: 1, hasNextPage: true });
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    const logItems = async () => {
-      const items = await getItems({ page: 1, pageSize: 10 });
-      const items2 = await getItems({ page: 200, pageSize: 5 });
-      console.log("items: ", items);
-      console.log("items2: ", items2);
-    };
-    logItems().catch((e) => console.error(e));
-  }, []);
+    setLoading(true);
+    getItems({ page, pageSize: 20 }).then((response) => {
+      setItems(response.items);
+      setPagination(response.pagination);
+      setLoading(false);
+    });
+  }, [page]);
 
   return (
-    <div className="App">
-      <h1 className="centered">Design System Card Component</h1>
-      <h2 className="centered">Design Reference</h2>
-      <div className="centered">
-        <Design />
+    <>
+      <PaginationControls
+        page={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        setPage={setPage}
+        loading={loading}
+      />
+      {loading && <div className="centered" style={{ margin: 30 }}>Loading...</div>}
+      {!loading && items.length > 0 && (
+        <div className="grid">
+          {items.map((item) => (
+            <div key={item.id} className="m-2">
+              {item.type === "2" ? <Card2 {...item} /> : <Card1 {...item} />}
+            </div>
+          ))}
+        </div>
+      )}
+      <PaginationControls
+        page={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        setPage={setPage}
+        loading={loading}
+      />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <div className="App">
+        <h1 className="centered">Design System Card Component</h1>
+        <h2 className="centered">Design Reference</h2>
+        <div className="centered">
+          <Design />
+        </div>
+        <ThemeToggle />
+        <h2 className="centered">Components:</h2>
+        <CardsPaginated />
       </div>
-      <h2 className="centered">Components:</h2>
-      {/* Add component Here */}
-    </div>
+    </ThemeProvider>
   );
 }
