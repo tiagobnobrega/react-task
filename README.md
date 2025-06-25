@@ -1,6 +1,6 @@
 # Intructions:
 
-Feel free to use whatever tool you want. AI included.
+Feel free to install any library and use whatever tool you want. AI included.
 
 Get a working copy at: https://github.com/tiagobnobrega/react-task.
 
